@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Jurusan | SMK Dharma Karya</title>
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .detail-hero {
+            height: 40vh;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .detail-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7));
+            z-index: 1;
+        }
+
+        .detail-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .detail-content {
+            padding: 80px 0;
+        }
+
+        .about-text p,
+        .curriculum-list li,
+        .feature-list li {
+            color: var(--light-text);
+        }
+
+        .curriculum-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .curriculum-list li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        #detail-container h1 {
+            color: #fff;
+        }
+
+        #detail-container p {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header / Navbar -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="./images/logo.png" alt="logo sekolah" width="50" height="50">
+                SMK Dharma Karya
+            </a>
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="index.html#jurusan" class="active">Jurusan</a></li>
+                    <li><a href="index.html#contact">Kontak</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="detail-container">
+        <!-- Content will be loaded here by JavaScript -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-graduation-cap"></i> SMK Dharma Karya
+            </div>
+            <p class="copyright">&copy; 2026 SMK Dharma Karya. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Separate logic for detail page to keep script.js clean or can be merged
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const container = document.getElementById('detail-container');
+
+            // Major data object
+            const majors = {
+                'akuntansi': {
+                    title: 'Akuntansi',
+                    description: 'Program keahlian Akuntansi membekali siswa dengan kompetensi dalam mengelola transaksi keuangan, menyusun laporan keuangan, perpajakan, dan pengoperasian aplikasi komputer akuntansi. Lulusan siap bekerja sebagai staf akuntansi, teller bank, atau wirausaha.',
+                    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
+                    curriculum: [
+                        'Dasar-dasar Akuntansi dan Keuangan Lembaga',
+                        'Aplikasi Pengolah Angka (Spreadsheet)',
+                        'Akuntansi Keuangan',
+                        'Komputer Akuntansi (MYOB/Accurate)',
+                        'Administrasi Pajak',
+                        'Produk Kreatif dan Kewirausahaan'
+                    ],
+                    careers: ['Staf Akuntansi', 'Teller Bank', 'Staff Administrasi Keuangan', 'Kasir', 'Wirausaha']
+                },
+                'perkantoran': {
+                    title: 'Manajemen Perkantoran',
+                    description: 'Jurusan Manajemen Perkantoran dan Layanan Bisnis (MPLB) fokus pada keterampilan administrasi, kearsipan, korespondensi, teknologi perkantoran, dan pelayanan prima kepada pelanggan. Lulusan memiliki peluang karir luas di berbagai instansi pemerintah maupun swasta.',
+                    image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
+                    curriculum: [
+                        'Teknologi Perkantoran',
+                        'Korespondensi Bahasa Indonesia & Inggris',
+                        'Kearsipan',
+                        'Otomatisasi Tata Kelola Kepegawaian',
+                        'Otomatisasi Tata Kelola Humas dan Keprotokolan',
+                        'Simulasi dan Komunikasi Digital'
+                    ],
+                    careers: ['Sekretaris Junior', 'Staf Administrasi', 'Resepsionis', 'Customer Service', 'Staf Personalia']
+                },
+                'pemasaran': {
+                    title: 'Pemasaran',
+                    description: 'Kompetensi Keahlian Bisnis Daring dan Pemasaran (BDP) mempelajari strategi pemasaran konvensional dan digital, manajemen ritel, serta kewirausahaan. Siswa dilatih untuk menjadi tenaga pemasar yang handal dan kreatif di era digital.',
+                    image: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
+                    curriculum: [
+                        'Marketing',
+                        'Perencanaan Bisnis',
+                        'Komunikasi Bisnis',
+                        'Penataan Produk (Display)',
+                        'Bisnis Online (Digital Marketing)',
+                        'Administrasi Transaksi'
+                    ],
+                    careers: ['Staf Marketing', 'Digital Marketer', 'Social Media Specialist', 'Pramuniaga', 'Wirausaha Online']
+                },
+                'dkv': {
+                    title: 'Desain Komunikasi Visual',
+                    description: 'Jurusan DKV mempelajari ilmu desain grafis, ilustrasi, fotografi, videografi, dan multimedia. Siswa diajarkan untuk menyampaikan pesan visual yang efektif dan estetik melalui berbagai media, mempersiapkan mereka untuk industri kreatif yang terus berkembang.',
+                    image: 'https://images.unsplash.com/photo-1626785774573-4b799314346d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
+                    curriculum: [
+                        'Dasar-dasar Desain Grafis',
+                        'Fotografi dan Videografi',
+                        'Desain Publikasi',
+                        'Komputer Grafis (Photoshop, Illustrator, CorelDraw)',
+                        'Produk Kreatif dan Kewirausahaan'
+                    ],
+                    careers: ['Desainer Grafis', 'Illustrator', 'Fotografer/Videografer', 'Editor Video', 'Content Creator']
+                }
+            };
+
+            if (id && majors[id]) {
+                const data = majors[id];
+                container.innerHTML = `
+                    <section class="detail-hero" style="background-image: url('${data.image}');">
+                        <div class="container detail-hero-content">
+                            <h1>${data.title}</h1>
+                            <p>Program Keahlian Unggulan</p>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <div class="container">
+                            <div class="about-content">
+                                <div class="about-text">
+                                    <h2>Tentang Jurusan</h2>
+                                    <p>${data.description}</p>
+                                    
+                                    <h3 style="margin-top: 30px;">Mata Pelajaran Unggulan</h3>
+                                    <ul class="curriculum-list">
+                                        ${data.curriculum.map(item => `<li>${item}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="career-box" style="background-color: var(--light-bg); padding: 30px; border-radius: 16px; border: 1px solid var(--border-color);">
+                                    <h3 style="color: var(--primary-color); margin-bottom: 20px;"><i class="fas fa-briefcase"></i> Prospek Karir</h3>
+                                    <ul class="feature-list">
+                                        ${data.careers.map(item => `<li><i class="fas fa-check"></i> ${item}</li>`).join('')}
+                                    </ul>
+                                    <a href="index.html#contact" class="btn btn-primary w-full" style="margin-top: 20px;">Daftar Sekarang</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="container" style="padding: 150px 0; text-align: center;">
+                        <h2>Jurusan tidak ditemukan</h2>
+                        <a href="index.html" class="btn btn-primary" style="margin-top: 20px;">Kembali ke Beranda</a>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+
+</html>
